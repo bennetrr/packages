@@ -1,0 +1,16 @@
+Package: bupdate
+Version: 1.3.1-0
+Architecture: all
+Maintainer: bennetr <bennetr-@outlook.de>
+Installed-Size: 2
+Depends: apt, sudo, dpkg, gawk, findutils, systemd
+Filename: ./bupdate_1.4.0.deb
+Size: 2916
+MD5sum: e60d57715bf1d5585e213f5771139686
+SHA1: 962049ce4ec2be5a7d059b07a9b1a9586df1ae75
+SHA256: 708a80f541bdb7d6a93cdd4497361c753d58c04fbd743c672c02f807b52d6a3a
+Section: admin
+Priority: extra
+Homepage: https://github.com/bennetrr
+Description: This script installs updates and reboots automatically when needed.
+
