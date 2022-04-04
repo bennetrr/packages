@@ -1,2 +1,2 @@
 # packages
-A repository for packages
+This repository contains package repositories
