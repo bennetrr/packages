@@ -1,0 +1,43 @@
+name: Auto-refresh of the apt repository
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+  
+      - name: Install dependencies
+        run: apt install gnupg
+
+      - name: Load the private key from the secrets
+        run: |
+          base64 -d - > private-key.asc < <(printf $KEY)
+          gpg --import private-key.asc
+          rm -vf private-key.asc
+        shell: bash
+        env:
+          KEY: ${{secrets.PRIVATE_KEY}}
+          
+      - name: Create the Packages file
+        run: |
+          cd ./apt
+          dpkg-scanpackages --multiversion . > Packages
+          gzip -k -f Packages
+          
+      - name: Create the Release, Release.gpg and InRelease files
+        run: |
+          cd ./apt
+          apt-ftparchive release . > Release
+          gpg --default-key bennet.ranft@outlook.de -abs -o - Release > Release.gpg
+          gpg --default-key bennet.ranft@outlook.de --clearsign -o - Release > InRelease
+      - name: Commit the updated repository to github
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          default_author: github_actions
+          message: Auto-refresh of the apt repository
