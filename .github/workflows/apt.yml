@@ -16,10 +16,7 @@ jobs:
         run: sudo apt install gnupg
 
       - name: Load the private key from the secrets
-        run: |
-          base64 -d - > private-key.asc < <(printf $KEY)
-          gpg --import private-key.asc
-          rm -vf private-key.asc
+        run: gpg --import <(base64 -d < <(printf "$KEY"))
         shell: bash
         env:
           KEY: ${{secrets.PRIVATE_KEY}}
