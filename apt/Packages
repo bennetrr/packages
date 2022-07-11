@@ -30,3 +30,19 @@ Priority: extra
 Homepage: https://github.com/bennetrr
 Description: This script installs updates and reboots automatically when needed.
 
+Package: bupdate
+Version: 1.4.2
+Architecture: all
+Maintainer: bennetr <bennetr-@outlook.de>
+Installed-Size: 2
+Depends: apt, sudo, dpkg, gawk, findutils, systemd
+Filename: ./bupdate_1.4.2.deb
+Size: 2904
+MD5sum: dcbe9d891f9272609dca4f9d55b150d6
+SHA1: 31eb46e450d9236a0f3fae2e470fd2bd57109771
+SHA256: 8f41d9e75b27d56db1a1bc8bdd32dae8cef0501a355247adcec33485883d5adb
+Section: admin
+Priority: extra
+Homepage: https://github.com/bennetrr
+Description: This script installs updates and reboots automatically when needed.
+
